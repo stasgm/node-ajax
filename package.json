@@ -3,5 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "stasgm <stasgm@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "webpack": "webpack",
+    "start": "node index.js",
+    "sv": "node-supervisor index.js",
+    "pm": "pm2 start index.js"
+  }
 }
