@@ -18,7 +18,7 @@ const server = http.createServer(function (req, res) {
 
 });
 
-const port = 7070;
+const port = 8080;
 server.listen(port, function() {
   console.log(`Ajax server started on port ${port}`);
 });
