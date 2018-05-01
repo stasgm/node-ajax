@@ -1,3 +1,4 @@
+/* eslint-disable no-alert, no-console */
 const http = require('http');
 const db = require('./db.json');
 
