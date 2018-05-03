@@ -12,23 +12,23 @@
       function refreshServerinfo() {
         const req = new XMLHttpRequest();
         req.addEventListener('load', function(){
-	  const data = JSON.parse(this.responseText);
-//	  console.log(data);
+					const data = JSON.parse(this.responseText);
+					console.log(data);
 
-	  const serverInfo = document.querySelector('.serverInfo');
+					const serverInfo = document.querySelector('.serverInfo');
 
-	  Object.keys(data).forEach(p => {
-	    const replacement = serverInfo.querySelectorAll(`[data-replace=${p}]`);
-	    for(let r of replacement){
-  		r.textContent = data[p];
-	    }
-	  });
-	});
-	req.open('GET', 'http://localhost:7070', true);
-	req.send();
-      }
+					Object.keys(data).forEach(p => {
+						const replacement = serverInfo.querySelectorAll(`[data-replace=${p}]`);
+						for(let r of replacement){
+						r.textContent = data[p];
+						}
+					});
+				});
+				req.open('GET', 'http://localhost:8080', true);
+				req.send();
+			}
 
-      setInterval(refreshServerinfo, 200);
+      refreshServerinfo();
     </script>
   </body>
 </html>
