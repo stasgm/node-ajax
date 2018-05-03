@@ -1,7 +1,8 @@
+/* eslint-disable no-alert, no-console */
 const http = require('http');
-const db = require("./db.json");
+const db = require('./db.json');
 
-const server = http.createServer(function (req, res) {
+const server = http.createServer((req, res) => {
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Access-Control-Allow-Origin', '*');
 
@@ -9,6 +10,7 @@ const server = http.createServer(function (req, res) {
     res.write(JSON.stringify(i));
   };
   
+  // res.end(JSON.stringify(db));  
   
   //res.write(JSON.stringify({status: "ok"}));
   /*res.end(JSON.stringify({ 
@@ -21,6 +23,6 @@ const server = http.createServer(function (req, res) {
 });
 
 const port = 8080;
-server.listen(port, function() {
+server.listen(port, () => {
   console.log(`Ajax server started on port ${port}`);
 });

@@ -9,5 +9,10 @@
     "start": "node index.js",
     "sv": "node-supervisor index.js",
     "pm": "pm2 start index.js"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.11.0"
   }
 }

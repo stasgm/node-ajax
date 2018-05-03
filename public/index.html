@@ -4,30 +4,41 @@
   </head>
   <body>
     <div class="serverInfo">
-	Сервер на платформе <span data-replace="platform">???</span>,
-	версия Node <span data-replace="nodeVersion">???</span>. 
-	Время его непрерывной работы <span data-replace="uptime">???</span> секунд.
-    </div>
+			Сервер на платформе <span data-replace="platform">???</span>,
+			версия Node <span data-replace="nodeVersion">???</span>. 
+			Время его непрерывной работы <span data-replace="uptime">???</span> секунд.
+		</div>
+		<div id='tableInfo' />
     <script type="application/javascript">
       function refreshServerinfo() {
         const req = new XMLHttpRequest();
-        req.addEventListener('load', function(){
-					const data = JSON.parse(this.responseText);
-					console.log(data);
 
+        req.addEventListener('load', function() {
+					const data = JSON.parse(this.responseText || 'error');				
+					// console.log(data);
+					const tableInfo =	document.getElementById('tableInfo');
+					
 					const serverInfo = document.querySelector('.serverInfo');
-
-					Object.keys(data).forEach(p => {
-						const replacement = serverInfo.querySelectorAll(`[data-replace=${p}]`);
-						for(let r of replacement){
-						r.textContent = data[p];
-						}
-					});
-				});
+					if (data != 'undefined') {
+						const db = data['data'];
+						db.forEach(itm => {
+							const child = document.createElement('div');
+							child.textContent = `${itm.name} - ${itm.age}. ${itm.occupation.join(', ')}`;
+							tableInfo.appendChild(child);
+							/*
+							Object.keys(itm).forEach(p => {
+								const replacement = serverInfo.querySelectorAll(`[data-replace=${p}]`);
+								for(let r of replacement){
+									r.textContent = db[p];
+								}
+							});							
+							*/
+						});						
+					}
+			  });
 				req.open('GET', 'http://localhost:8080', true);
 				req.send();
-			}
-
+      }
       refreshServerinfo();
     </script>
   </body>
